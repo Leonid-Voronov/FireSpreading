@@ -4,5 +4,6 @@ namespace FireSpreading
     {
         public void CatchFire();
         public void DamageNeighbours();
+        public void SetNeighboursSearcher(NeighboursSearcher neighboursSearcher);
     }
 }

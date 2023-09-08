@@ -9,6 +9,7 @@ namespace FireSpreading
         [SerializeField] private TerrainTracker _terrainTracker;
         [SerializeField] private GameObject _plantPrefab;
         [SerializeField] private Transform _regularPlantsTransform;
+        [SerializeField] private NeighboursSearcher _neighboursSearcher;
         [SerializeField] private List<ChildCleaner> _childCleaners;
 
         [Header ("Values")]
@@ -26,6 +27,9 @@ namespace FireSpreading
             newPlantTransform.position = new Vector3 (newPlantTransform.position.x, 
                                                       newPlantTransform.position.y + newPlantTransform.localScale.y / 2, 
                                                       newPlantTransform.position.z); //raise plant to surface
+
+            Plant plantComponent = newPlant.GetComponent<Plant>();
+            plantComponent.SetNeighboursSearcher(_neighboursSearcher);
         }
 
         private Vector3 FindAvailablePosition()
