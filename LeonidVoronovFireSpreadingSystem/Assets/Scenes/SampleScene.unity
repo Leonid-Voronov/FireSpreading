@@ -313,6 +313,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199649940}
   m_CullTransparentMesh: 1
+--- !u!1 &207327407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 207327408}
+  - component: {fileID: 207327409}
+  m_Layer: 0
+  m_Name: BurningPlants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &207327408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207327407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1063515806}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207327409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207327407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7571093b9f1857d49b2a4d43a80475bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &375073344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,6 +363,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1300056372}
     m_Modifications:
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1556806528}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FireRandomPlants
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FireSpreading.FireStarter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1080775689859817427, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -890,7 +961,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -916,13 +987,69 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.4215897, y: 0, z: 0, w: 0.9067868}
-  m_LocalPosition: {x: 410, y: 480, z: -187}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 401, y: 527, z: -216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 49.87, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!1 &1063515804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1063515806}
+  - component: {fileID: 1063515805}
+  m_Layer: 0
+  m_Name: Plants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1063515805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063515804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f8a0f3e0dd57c4987e4cd4d57f55a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _terrainTracker: {fileID: 1923527036}
+  _plantPrefab: {fileID: 5609697185628954290, guid: e057944c0fcf07943a82fac751f0dc4b, type: 3}
+  _regularPlantsTransform: {fileID: 1919078247}
+  _childCleaners:
+  - {fileID: 1919078248}
+  - {fileID: 207327409}
+  - {fileID: 1470538277}
+  _amountPerGeneration: 50
+  _minPlantSize: 20
+  _maxPlantSize: 30
+--- !u!4 &1063515806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063515804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1919078247}
+  - {fileID: 207327408}
+  - {fileID: 1470538276}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300056371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1299,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470538275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470538276}
+  - component: {fileID: 1470538277}
+  m_Layer: 0
+  m_Name: BurntPlants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470538276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470538275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1063515806}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470538277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470538275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7571093b9f1857d49b2a4d43a80475bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1556806526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556806527}
+  - component: {fileID: 1556806528}
+  m_Layer: 0
+  m_Name: FireStarter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556806527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556806526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1556806528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556806526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b8d261375b13e4a93472385b5288b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomPlantGetter: {fileID: 1919078249}
+  _burningPlantsTransform: {fileID: 207327408}
+  _firePlantsAmount: 3
 --- !u!1001 &1682084547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1306,6 +1522,62 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8084031179318681539, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
   m_PrefabInstance: {fileID: 1682084547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1919078246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919078247}
+  - component: {fileID: 1919078248}
+  - component: {fileID: 1919078249}
+  m_Layer: 0
+  m_Name: RegularPlants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919078247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919078246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1063515806}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919078248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919078246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7571093b9f1857d49b2a4d43a80475bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1919078249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919078246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ea467f41dac0e4ca9cde582ff22113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1923527032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1589,8 @@ GameObject:
   - component: {fileID: 1923527035}
   - component: {fileID: 1923527034}
   - component: {fileID: 1923527033}
-  m_Layer: 0
+  - component: {fileID: 1923527036}
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,6 +1655,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1923527036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923527032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd17f2f3c79311946bb2d084fae0271a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _terrain: {fileID: 1923527034}
 --- !u!1001 &1992415403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1389,6 +1675,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1300056372}
     m_Modifications:
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1063515805}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Clear
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FireSpreading.PlantGenerator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1080775689859817427, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1574,6 +1888,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1300056372}
     m_Modifications:
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1063515805}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GeneratePlants
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FireSpreading.PlantGenerator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1080775689859817427, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1697,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
       propertyPath: m_Value
-      value: 0.075
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
       propertyPath: m_MaxValue
