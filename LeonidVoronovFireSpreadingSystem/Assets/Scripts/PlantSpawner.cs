@@ -8,9 +8,11 @@ namespace FireSpreading
         [Header ("References")]
         [SerializeField] private TerrainTracker _terrainTracker;
         [SerializeField] private GameObject _plantPrefab;
-        [SerializeField] private Transform _regularPlantsTransform;
         [SerializeField] private NeighboursSearcher _neighboursSearcher;
         [SerializeField] private List<ChildCleaner> _childCleaners;
+        [SerializeField] private Transform _regularPlantsTransform;
+        [SerializeField] private Transform _burningPlantsTransform;
+        [SerializeField] private Transform _burntPlantsTransform;
 
         [Header ("Values")]
         [SerializeField] private int _amountPerGeneration; 
@@ -30,6 +32,8 @@ namespace FireSpreading
 
             Plant plantComponent = newPlant.GetComponent<Plant>();
             plantComponent.SetNeighboursSearcher(_neighboursSearcher);
+            plantComponent.SetBurningPlantsTransform(_burningPlantsTransform);
+            plantComponent.SetBurntPlantsTransform(_burntPlantsTransform);
         }
 
         private Vector3 FindAvailablePosition()

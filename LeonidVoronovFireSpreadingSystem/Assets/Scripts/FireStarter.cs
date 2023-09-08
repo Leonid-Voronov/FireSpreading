@@ -5,7 +5,6 @@ namespace FireSpreading
     public class FireStarter : MonoBehaviour
     {
         [SerializeField] private RandomPlantGetter _randomPlantGetter;
-        [SerializeField] private Transform _burningPlantsTransform;
         [SerializeField] private int _firePlantsAmount;
 
         public void FireRandomPlants()
@@ -22,7 +21,6 @@ namespace FireSpreading
                 }
 
                 plant.GetComponent<IFlammable>().CatchFire();
-                plant.transform.parent = _burningPlantsTransform;
             }
         }
     }

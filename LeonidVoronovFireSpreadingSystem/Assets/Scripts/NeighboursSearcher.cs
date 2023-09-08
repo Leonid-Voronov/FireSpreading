@@ -8,16 +8,21 @@ namespace FireSpreading
     {
         private Collider[] _colliders = new Collider[50];
 
-        public List<Collider> FindNeighbours(Vector3 startPosition, float radius, int layerMask)
+        public List<IFlammable> FindNeighbours(Vector3 startPosition, float radius, int layerMask)
         {
             Array.Clear(_colliders, 0, _colliders.Length);
             Physics.OverlapSphereNonAlloc(startPosition, radius, _colliders, layerMask);
-            List<Collider> result = new List<Collider>();
+            List<IFlammable> result = new List<IFlammable>();
 
             for (int i = 0; i < _colliders.Length; i++)
             {
                 if (_colliders[i] != null)
-                    result.Add(_colliders[i]);
+                {
+                    IFlammable neighbour = _colliders[i].GetComponent<IFlammable>();
+                    if (neighbour.CanBurn())
+                        result.Add(neighbour);
+                }
+                    
             }
 
             return result;

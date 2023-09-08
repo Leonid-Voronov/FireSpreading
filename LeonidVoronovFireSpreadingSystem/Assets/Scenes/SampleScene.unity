@@ -1068,15 +1068,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _terrainTracker: {fileID: 1923527036}
   _plantPrefab: {fileID: 5609697185628954290, guid: e057944c0fcf07943a82fac751f0dc4b, type: 3}
-  _regularPlantsTransform: {fileID: 1919078247}
   _neighboursSearcher: {fileID: 720916871}
   _childCleaners:
   - {fileID: 1919078248}
   - {fileID: 207327409}
   - {fileID: 1470538277}
-  _amountPerGeneration: 50
-  _minPlantSize: 20
-  _maxPlantSize: 30
+  _regularPlantsTransform: {fileID: 1919078247}
+  _burningPlantsTransform: {fileID: 207327408}
+  _burntPlantsTransform: {fileID: 1470538276}
+  _amountPerGeneration: 10000
+  _minPlantSize: 1
+  _maxPlantSize: 3
 --- !u!4 &1063515806
 Transform:
   m_ObjectHideFlags: 0
@@ -1430,7 +1432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _randomPlantGetter: {fileID: 1919078249}
-  _burningPlantsTransform: {fileID: 207327408}
   _firePlantsAmount: 3
 --- !u!1001 &1682084547
 PrefabInstance:
