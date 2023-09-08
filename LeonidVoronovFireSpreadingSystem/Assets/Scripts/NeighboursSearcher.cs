@@ -22,7 +22,6 @@ namespace FireSpreading
                     if (neighbour.CanBurn())
                         result.Add(neighbour);
                 }
-                    
             }
 
             return result;
