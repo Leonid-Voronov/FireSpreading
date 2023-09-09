@@ -10,8 +10,10 @@ namespace FireSpreading
         [SerializeField] private Slider _windSpeedSlider;
         [SerializeField] private float _maxWindSpeed;
 
-        private int _windDirection;
+        private Vector3 _windDirection;
         private float _windSpeed;
+
+        public Vector3 WindDirection => _windDirection;
 
         private void OnEnable()
         {
@@ -35,8 +37,10 @@ namespace FireSpreading
             if (newValue < 0 || newValue > 360)
                 return;
 
-            _windDirection = newValue;
-            _windRepresenter.RepresentWindDirection(_windDirection);
+            float theta = newValue * Mathf.PI / 180;
+            _windDirection = new Vector3(Mathf.Cos(theta), 0, Mathf.Sin(theta));
+
+            _windRepresenter.RepresentWindDirection(newValue);
         }
 
         private void OnDisable()

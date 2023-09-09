@@ -13,6 +13,7 @@ namespace FireSpreading
         [SerializeField] private Transform _regularPlantsTransform;
         [SerializeField] private Transform _burningPlantsTransform;
         [SerializeField] private Transform _burntPlantsTransform;
+        [SerializeField] private WindSystem _windSystem;
 
         [Header ("Values")]
         [SerializeField] private int _amountPerGeneration; 
@@ -31,9 +32,7 @@ namespace FireSpreading
                                                       newPlantTransform.position.z); //raise plant to surface
 
             Plant plantComponent = newPlant.GetComponent<Plant>();
-            plantComponent.SetNeighboursSearcher(_neighboursSearcher);
-            plantComponent.SetBurningPlantsTransform(_burningPlantsTransform);
-            plantComponent.SetBurntPlantsTransform(_burntPlantsTransform);
+            plantComponent.SetDependencies(_neighboursSearcher, _burningPlantsTransform, _burntPlantsTransform, _windSystem);
         }
 
         private Vector3 FindAvailablePosition()

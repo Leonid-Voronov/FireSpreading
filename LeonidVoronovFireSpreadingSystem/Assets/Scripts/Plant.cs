@@ -19,6 +19,8 @@ namespace FireSpreading
         private Transform _burningPlantsTransform;
         private Transform _burntPlantsTransform;
         private NeighboursSearcher _neighboursSearcher;
+        private WindSystem _windSystem;
+
         private List<IFlammable> _neighbours = new List<IFlammable>();
         private float _burnTimer;
         private bool _burning = false;
@@ -63,6 +65,9 @@ namespace FireSpreading
         {
             foreach (IFlammable neighbour in _neighbours) 
             {
+                Vector3 neighbourDirection = neighbour.GetPosition() - transform.position;
+                float dotProduct = Vector3.Dot(neighbourDirection, _windSystem.WindDirection);
+
                 neighbour.LoseHealth(_damageRate * Time.deltaTime);
             }
         }
@@ -77,9 +82,14 @@ namespace FireSpreading
 
         public bool IsBurning() { return _burning; }
         public bool CanBurn() { return !_burning && !_burnt; }
-        public void SetNeighboursSearcher(NeighboursSearcher newNeighboursSearcher) { _neighboursSearcher = newNeighboursSearcher; }
-        public void SetBurningPlantsTransform(Transform newTransform) { _burningPlantsTransform = newTransform; }
-        public void SetBurntPlantsTransform(Transform newTransform) { _burntPlantsTransform = newTransform; }
+        public Vector3 GetPosition() { return transform.position; }
+        public void SetDependencies (NeighboursSearcher newNeighboursSearcher, Transform newBurningPlantsTransform, Transform newBurntPlantsTransform, WindSystem newWindSystem)
+        {
+            _neighboursSearcher = newNeighboursSearcher;
+            _burningPlantsTransform = newBurningPlantsTransform;
+            _burntPlantsTransform = newBurntPlantsTransform;
+            _windSystem = newWindSystem;
+        }
     }
 }
 
