@@ -11,5 +11,9 @@ namespace FireSpreading
         public bool IsBurning();
         public bool CanBurn();
         public Vector3 GetPosition();
+        public void AwareNeighboursOnSpawning();
+        public void AwareNeighboursOnRemoving();
+        public void AddToNeighboursList(IFlammable flammable);
+        public void RemoveFromNeighboursList(IFlammable flammable);
     }
 }

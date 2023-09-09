@@ -21,7 +21,11 @@ namespace FireSpreading
                 Physics.Raycast(ray, out RaycastHit hitInfo);
 
                 if (hitInfo.collider.GetComponent<Terrain>())
-                    _plantSpawner.SpawnPlant(hitInfo.point);
+                {
+                    Plant newPlant = _plantSpawner.SpawnPlant(hitInfo.point);
+                    newPlant.AwareNeighboursOnSpawning();
+                }
+                    
             }
         }
     }

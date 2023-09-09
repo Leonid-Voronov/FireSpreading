@@ -8,8 +8,9 @@ namespace FireSpreading
 
         public override void Interact(GameObject pointedObject, InteractionSystem interactionSystem)
         {
-            if (pointedObject.GetComponent<Plant>())
+            if (pointedObject.TryGetComponent(out Plant plantComponent))
             {
+                plantComponent.AwareNeighboursOnRemoving();
                 interactionSystem.ResetPointedObject(pointedObject);
                 MonoBehaviour.Destroy(pointedObject);
 

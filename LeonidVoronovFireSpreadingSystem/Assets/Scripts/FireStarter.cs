@@ -16,7 +16,6 @@ namespace FireSpreading
 
                 if (plant == null)
                 {
-                    Debug.Log("No available plants");
                     return;
                 }
 

@@ -24,6 +24,8 @@ namespace FireSpreading
         private NeighboursSearcher _neighboursSearcher;
         private WindSystem _windSystem;
 
+        private BurningInspector _burningInspector;
+        private BurnableInspector _burnableInspector;
 
         private List<IFlammable> _neighbours = new List<IFlammable>();
         private float _burnTimer;
@@ -34,6 +36,8 @@ namespace FireSpreading
         private void OnEnable()
         {
             ResetValues();
+            _burningInspector = new BurningInspector();
+            _burnableInspector = new BurnableInspector();
         }
 
         private void Update()
@@ -63,7 +67,8 @@ namespace FireSpreading
             _meshRenderer.material = _burningMaterial;
 
             string layerMaskName = LayerMask.LayerToName(gameObject.layer);
-            _neighbours = _neighboursSearcher.FindNeighbours(transform.position, transform.localScale.x * _firePropagationRadiusMultiplier, LayerMask.GetMask(layerMaskName));
+            float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
+            _neighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius , LayerMask.GetMask(layerMaskName), _burnableInspector);
         }
 
         private void PutOutFire()
@@ -120,6 +125,38 @@ namespace FireSpreading
             _windSystem = newWindSystem;
 
             _mouseInteractor.SetInteractionSystem(newInteractionSystem);
+        }
+
+        public void AwareNeighboursOnSpawning()
+        {
+            string layerMaskName = LayerMask.LayerToName(gameObject.layer);
+            float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
+            List<IFlammable> burningNeighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius, LayerMask.GetMask(layerMaskName), _burningInspector);
+
+            foreach (IFlammable burningNeighbour in burningNeighbours)
+                burningNeighbour.AddToNeighboursList(this);
+        }
+
+        public void AwareNeighboursOnRemoving()
+        {
+            string layerMaskName = LayerMask.LayerToName(gameObject.layer);
+            float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
+            List<IFlammable> burningNeighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius, LayerMask.GetMask(layerMaskName), _burningInspector);
+
+            foreach (IFlammable burningNeighbour in burningNeighbours)
+                burningNeighbour.RemoveFromNeighboursList(this);
+        }
+
+        public void AddToNeighboursList(IFlammable flammable)
+        {
+            if (!_neighbours.Contains(flammable))
+                _neighbours.Add(flammable);
+        }
+
+        public void RemoveFromNeighboursList(IFlammable flammable)
+        {
+            if (_neighbours.Contains(flammable))
+                _neighbours.Remove(flammable);
         }
     }
 }

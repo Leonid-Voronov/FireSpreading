@@ -21,7 +21,7 @@ namespace FireSpreading
         [SerializeField] private int _minPlantSize;
         [SerializeField] private int _maxPlantSize;
 
-        public void SpawnPlant(Vector3 spawnPosition)
+        public Plant SpawnPlant(Vector3 spawnPosition)
         {
             int coreSize = Random.Range(_minPlantSize, _maxPlantSize);
             GameObject newPlant = Instantiate(_plantPrefab, spawnPosition, Quaternion.identity, _regularPlantsTransform);
@@ -34,6 +34,7 @@ namespace FireSpreading
 
             Plant plantComponent = newPlant.GetComponent<Plant>();
             plantComponent.SetDependencies(_neighboursSearcher, _regularPlantsTransform, _burningPlantsTransform, _burntPlantsTransform, _windSystem, _interactionSystem);
+            return plantComponent;
         }
 
         private Vector3 FindAvailablePosition()
