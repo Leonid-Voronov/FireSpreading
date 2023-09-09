@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5609697185628954288}
   - component: {fileID: 5609697185628954289}
   - component: {fileID: 5339483926779306256}
+  - component: {fileID: 7313287158220533059}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -108,10 +109,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e8f064ceab26f4298dc0aaaf70dacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseInteractor: {fileID: 7313287158220533059}
   _meshRenderer: {fileID: 5609697185628954288}
+  _defaultMaterial: {fileID: 2100000, guid: caa87fb40f3ccff4485bfa127e5d3271, type: 2}
   _burningMaterial: {fileID: 2100000, guid: 14f55d5289b97904485a5b6658d45467, type: 2}
   _burntMaterial: {fileID: 2100000, guid: c23029cc4df059340a9434e6338567fa, type: 2}
-  _firePropagationRadiusMultiplier: 6
-  _health: 50
+  _firePropagationRadiusMultiplier: 2
+  _healthMax: 50
   _damageRate: 10
   _burnTime: 10
+--- !u!114 &7313287158220533059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609697185628954290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646740c247a94a645a288356a65dc121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
