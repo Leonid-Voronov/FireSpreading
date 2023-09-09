@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8750143e44ecea449b1e1a2815e9648a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _plantSpawner: {fileID: 1063515805}
   _mouseModeRepresenter: {fileID: 1935762102}
   _slider: {fileID: 1935704588}
 --- !u!1 &199649940
@@ -1869,6 +1870,7 @@ GameObject:
   - component: {fileID: 1923527034}
   - component: {fileID: 1923527033}
   - component: {fileID: 1923527036}
+  - component: {fileID: 1923527037}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -1947,6 +1949,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _terrain: {fileID: 1923527034}
+--- !u!114 &1923527037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923527032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646740c247a94a645a288356a65dc121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionSystem: {fileID: 100318528}
 --- !u!114 &1935704588 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}

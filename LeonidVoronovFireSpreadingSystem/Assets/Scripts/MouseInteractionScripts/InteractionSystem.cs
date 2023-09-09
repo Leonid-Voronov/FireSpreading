@@ -6,6 +6,7 @@ namespace FireSpreading
 {
     public class InteractionSystem : MonoBehaviour
     {
+        [SerializeField] private PlantSpawner _plantSpawner;
         [SerializeField] private MouseModeRepresenter _mouseModeRepresenter;
         [SerializeField] private Slider _slider;
 
@@ -20,7 +21,7 @@ namespace FireSpreading
 
         private void Start()
         {
-            _mouseModeAdd = new MouseModeAdd();
+            _mouseModeAdd = new MouseModeAdd(_plantSpawner);
             _mouseModeRemove = new MouseModeRemove();
             _mouseModeToggleFire = new MouseModeToggleFire();
 

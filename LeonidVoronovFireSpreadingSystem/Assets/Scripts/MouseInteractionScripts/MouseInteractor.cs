@@ -4,7 +4,7 @@ namespace FireSpreading
 {
     public class MouseInteractor : MonoBehaviour
     {
-        private InteractionSystem _interactionSystem;
+        [SerializeField] private InteractionSystem _interactionSystem;
 
         private void OnMouseEnter()
         {

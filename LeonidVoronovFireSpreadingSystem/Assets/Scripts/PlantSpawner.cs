@@ -21,10 +21,10 @@ namespace FireSpreading
         [SerializeField] private int _minPlantSize;
         [SerializeField] private int _maxPlantSize;
 
-        private void GeneratePlant()
+        public void SpawnPlant(Vector3 spawnPosition)
         {
             int coreSize = Random.Range(_minPlantSize, _maxPlantSize);
-            GameObject newPlant = Instantiate(_plantPrefab, FindAvailablePosition(), Quaternion.identity, _regularPlantsTransform);
+            GameObject newPlant = Instantiate(_plantPrefab, spawnPosition, Quaternion.identity, _regularPlantsTransform);
             newPlant.transform.localScale = new Vector3(coreSize, coreSize * 2, coreSize);
             Transform newPlantTransform = newPlant.transform;
             
@@ -66,7 +66,7 @@ namespace FireSpreading
             Clear();
             for (int i = 0; i < _amountPerGeneration; i++)
             {
-                GeneratePlant();
+                SpawnPlant(FindAvailablePosition());
             }
         }
 

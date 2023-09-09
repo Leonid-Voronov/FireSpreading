@@ -6,12 +6,12 @@ namespace FireSpreading
     {
         public MouseModeRemove() { _name = "Remove"; }
 
-        public override void Interact(GameObject _pointedObject, InteractionSystem interactionSystem)
+        public override void Interact(GameObject pointedObject, InteractionSystem interactionSystem)
         {
-            if (_pointedObject.GetComponent<Plant>())
+            if (pointedObject.GetComponent<Plant>())
             {
-                interactionSystem.ResetPointedObject(_pointedObject);
-                MonoBehaviour.Destroy(_pointedObject);
+                interactionSystem.ResetPointedObject(pointedObject);
+                MonoBehaviour.Destroy(pointedObject);
 
                 //Scan for burning trees and stop being their neighbour
             }

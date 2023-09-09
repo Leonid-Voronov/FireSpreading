@@ -4,13 +4,24 @@ namespace FireSpreading
 {
     public class MouseModeAdd : MouseMode
     {
-        public MouseModeAdd() { _name = "Add"; }
+        public MouseModeAdd(PlantSpawner plantSpawner) 
+        { 
+            _name = "Add"; 
+            _plantSpawner = plantSpawner;
+        }
 
-        public override void Interact(GameObject _pointedObject, InteractionSystem interactionSystem)
+        private PlantSpawner _plantSpawner;
+
+        public override void Interact(GameObject pointedObject, InteractionSystem interactionSystem)
         {
-            if (_pointedObject.GetComponent<Terrain>())
+            if (pointedObject.GetComponent<Terrain>())
             {
-                //Add plant
+                Vector3 screenPosition = Input.mousePosition;
+                Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+                Physics.Raycast(ray, out RaycastHit hitInfo);
+
+                if (hitInfo.collider.GetComponent<Terrain>())
+                    _plantSpawner.SpawnPlant(hitInfo.point);
             }
         }
     }

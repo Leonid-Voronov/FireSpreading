@@ -6,9 +6,9 @@ namespace FireSpreading
     {
         public MouseModeToggleFire() { _name = "ToggleFire"; }
 
-        public override void Interact(GameObject _pointedObject, InteractionSystem interactionSystem)
+        public override void Interact(GameObject pointedObject, InteractionSystem interactionSystem)
         {
-            if (_pointedObject.TryGetComponent(out Plant plantComponent)) 
+            if (pointedObject.TryGetComponent(out Plant plantComponent)) 
                 plantComponent.ToggleFire();
         }
     }
