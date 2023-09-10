@@ -8,24 +8,25 @@ namespace FireSpreading
         [Header("References")]
         [SerializeField] private MouseInteractor _mouseInteractor;
         [SerializeField] private MeshRenderer _meshRenderer;
-        [SerializeField] private Material _defaultMaterial;
-        [SerializeField] private Material _burningMaterial;
-        [SerializeField] private Material _burntMaterial;
 
         [Header("Values")]
         [SerializeField] private float _healthMax;
         [SerializeField] private float _damageRate;
         [SerializeField] private float _burnTime;
         [SerializeField] private bool _affectedByWind;
+        [SerializeField] private int _energyToBurn;
 
         private Transform _regularPlantsTransform;
         private Transform _burningPlantsTransform;
         private Transform _burntPlantsTransform;
         private NeighboursSearcher _neighboursSearcher;
         private WindSystem _windSystem;
+        private FireStarter _fireStarter;
+        private Simulation _simulation;
 
         private BurningInspector _burningInspector;
         private BurnableInspector _burnableInspector;
+        private IFire _fire;
 
         private List<IFlammable> _neighbours = new List<IFlammable>();
         private float _firePropagationRadiusMultiplier;
@@ -43,7 +44,7 @@ namespace FireSpreading
 
         private void Update()
         {
-            if (_burning)
+            if (_burning && _simulation.IsSimulating)
             {
                 DamageNeighbours();
                 _burnTimer -= Time.deltaTime;
@@ -60,34 +61,47 @@ namespace FireSpreading
             _burning = false;
         }
 
-        public void CatchFire()
+        private List<IFlammable> ScanNeighbours(FlammableInspector flammableInspector)
         {
-            _burning = true;
-            transform.parent = _burningPlantsTransform;
-            _meshRenderer.material = _burningMaterial;
-
             string layerMaskName = LayerMask.LayerToName(gameObject.layer);
             float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
-            _neighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius , LayerMask.GetMask(layerMaskName), _burnableInspector);
+            return _neighboursSearcher.FindNeighbours(transform.position, scanningRadius, LayerMask.GetMask(layerMaskName), flammableInspector);
+        }
+
+        public void CatchFire(IFire newFire)
+        {
+            _fire = newFire;
+            _fire.VisualizeBurning(_meshRenderer);
+
+            if (_fireStarter.FireRestricted)
+                _fire.SpendEnergy(_energyToBurn);
+                
+
+            _burning = true;
+            transform.parent = _burningPlantsTransform;
+            _neighbours = ScanNeighbours(_burnableInspector);
         }
 
         private void PutOutFire()
         {
             ResetValues();
             transform.parent = _regularPlantsTransform;
-            _meshRenderer.material = _defaultMaterial;
+            _fire.VisualizeRegular(_meshRenderer);
         }
 
         public void BurnOut()
         {
             _burning = false;
             transform.parent = _burntPlantsTransform;
-            _meshRenderer.material = _burntMaterial;
+            _fire.VisualizeBurnt(_meshRenderer);
             _burnt = true;
         }
 
         public void DamageNeighbours()
         {
+            if (!_simulation.IsSimulating || (_fireStarter.FireRestricted && !_fire.IsEnoughEnergy()))
+                return;
+
             foreach (IFlammable neighbour in _neighbours) 
             {
                 float damage = _damageRate * Time.deltaTime;
@@ -100,16 +114,16 @@ namespace FireSpreading
                     damage = directionDamageModifier * _windSystem.WindSpeed * damage;
                 }
 
-                neighbour.LoseHealth(damage);
+                neighbour.LoseHealth(damage, _fire);
             }
         }
         
-        public void LoseHealth(float DamageAmount)
+        public void LoseHealth(float DamageAmount, IFire fire)
         {
             _health -= DamageAmount;
 
-            if (_health <= 0)
-                CatchFire();
+            if (_health <= 0 && !_burning)
+                CatchFire(fire);
         }
 
         public void ToggleFire()
@@ -117,7 +131,7 @@ namespace FireSpreading
             if (_burning)
                 PutOutFire();
             else if (!_burnt)
-                CatchFire();
+                CatchFire(_fireStarter.CreateRegularFire());
         }
 
         public bool IsBurning() { return _burning; }
@@ -131,25 +145,21 @@ namespace FireSpreading
             _burntPlantsTransform = newDependencies.BurntPlantsTransform;
             _windSystem = newDependencies.WindSystem;
             _mouseInteractor.SetInteractionSystem(newDependencies.InteractionSystem);
+            _fireStarter = newDependencies.FireStarter;
+            _simulation = newDependencies.Simulation;
             _firePropagationRadiusMultiplier = newPropogationRadiusMultiplier;
         }
 
         public void AwareNeighboursOnSpawning()
         {
-            string layerMaskName = LayerMask.LayerToName(gameObject.layer);
-            float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
-            List<IFlammable> burningNeighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius, LayerMask.GetMask(layerMaskName), _burningInspector);
-
+            List<IFlammable> burningNeighbours = ScanNeighbours(_burningInspector);
             foreach (IFlammable burningNeighbour in burningNeighbours)
                 burningNeighbour.AddToNeighboursList(this);
         }
 
         public void AwareNeighboursOnRemoving()
         {
-            string layerMaskName = LayerMask.LayerToName(gameObject.layer);
-            float scanningRadius = transform.localScale.x * _firePropagationRadiusMultiplier;
-            List<IFlammable> burningNeighbours = _neighboursSearcher.FindNeighbours(transform.position, scanningRadius, LayerMask.GetMask(layerMaskName), _burningInspector);
-
+            List<IFlammable> burningNeighbours = ScanNeighbours(_burningInspector);
             foreach (IFlammable burningNeighbour in burningNeighbours)
                 burningNeighbour.RemoveFromNeighboursList(this);
         }

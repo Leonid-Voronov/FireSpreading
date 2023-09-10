@@ -4,10 +4,10 @@ namespace FireSpreading
 {
     public interface IFlammable
     {
-        public void CatchFire();
+        public void CatchFire(IFire fire);
         public void DamageNeighbours();
         public void BurnOut();
-        public void LoseHealth(float DamageAmount);
+        public void LoseHealth(float DamageAmount, IFire fire);
         public bool IsBurning();
         public bool CanBurn();
         public Vector3 GetPosition();

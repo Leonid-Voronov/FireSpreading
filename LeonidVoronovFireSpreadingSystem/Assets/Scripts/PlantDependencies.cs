@@ -11,6 +11,8 @@ namespace FireSpreading
         [SerializeField] private Transform _burntPlantsTransform;
         [SerializeField] private WindSystem _windSystem;
         [SerializeField] private InteractionSystem _interactionSystem;
+        [SerializeField] private FireStarter _fireStarter;
+        [SerializeField] private Simulation _simulation;
 
         public NeighboursSearcher NeighboursSearcher => _neighboursSearcher;
         public Transform RegularPlantsTransform => _regularPlantsTransform;
@@ -18,6 +20,8 @@ namespace FireSpreading
         public Transform BurntPlantsTransform => _burntPlantsTransform;
         public WindSystem WindSystem => _windSystem;
         public InteractionSystem InteractionSystem => _interactionSystem;
+        public FireStarter FireStarter => _fireStarter;
+        public Simulation Simulation => _simulation;
     }
 }
 
