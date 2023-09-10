@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 namespace FireSpreading
 {
-    public class MouseModeRepresenter : MonoBehaviour
+    public class NameRepresenter : MonoBehaviour
     {
         [SerializeField] private Text _text;
-        public void RepresentModeValue(MouseMode newMouseMode)
+        public void RepresentName(IRepresentative representative)
         {
-            _text.text = newMouseMode.GetName();
+            _text.text = representative.GetName();
         }
     }
 }

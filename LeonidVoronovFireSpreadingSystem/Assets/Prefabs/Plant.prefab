@@ -118,6 +118,7 @@ MonoBehaviour:
   _healthMax: 50
   _damageRate: 10
   _burnTime: 10
+  _affectedByWind: 1
 --- !u!114 &7313287158220533059
 MonoBehaviour:
   m_ObjectHideFlags: 0

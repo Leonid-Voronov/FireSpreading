@@ -7,7 +7,7 @@ namespace FireSpreading
     public class InteractionSystem : MonoBehaviour
     {
         [SerializeField] private PlantSpawner _plantSpawner;
-        [SerializeField] private MouseModeRepresenter _mouseModeRepresenter;
+        [SerializeField] private NameRepresenter _mouseModeRepresenter;
         [SerializeField] private Slider _slider;
 
         private GameObject _pointedObject;
@@ -32,7 +32,7 @@ namespace FireSpreading
             _currentMouseMode = _mouseModeAdd;
 
             _slider.onValueChanged.AddListener(delegate { SetMouseMode(); });
-            _mouseModeRepresenter.RepresentModeValue(_currentMouseMode);
+            _mouseModeRepresenter.RepresentName(_currentMouseMode);
         }
 
         private void Update() 
@@ -46,7 +46,7 @@ namespace FireSpreading
         private void SetMouseMode() 
         { 
             _currentMouseMode = _availableMouseModes[(int)_slider.value];
-            _mouseModeRepresenter.RepresentModeValue(_currentMouseMode);
+            _mouseModeRepresenter.RepresentName(_currentMouseMode);
         }
         public void SetPointedObject(GameObject newObject) { _pointedObject = newObject; }
         public void ResetPointedObject(GameObject sender)

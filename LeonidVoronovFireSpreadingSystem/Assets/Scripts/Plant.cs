@@ -13,10 +13,10 @@ namespace FireSpreading
         [SerializeField] private Material _burntMaterial;
 
         [Header("Values")]
-        [SerializeField] private int _firePropagationRadiusMultiplier;
         [SerializeField] private float _healthMax;
         [SerializeField] private float _damageRate;
         [SerializeField] private float _burnTime;
+        [SerializeField] private bool _affectedByWind;
 
         private Transform _regularPlantsTransform;
         private Transform _burningPlantsTransform;
@@ -28,6 +28,7 @@ namespace FireSpreading
         private BurnableInspector _burnableInspector;
 
         private List<IFlammable> _neighbours = new List<IFlammable>();
+        private float _firePropagationRadiusMultiplier;
         private float _burnTimer;
         private float _health;
         private bool _burning;
@@ -89,12 +90,17 @@ namespace FireSpreading
         {
             foreach (IFlammable neighbour in _neighbours) 
             {
-                Vector3 neighbourDirection = (neighbour.GetPosition() - transform.position).normalized;
-                float dotProduct = Vector3.Dot(_windSystem.WindDirection, neighbourDirection); 
-                float directionDamageModifier = Mathf.Lerp(0, 1, dotProduct);
-                float modifiedDamage = directionDamageModifier * _windSystem.WindSpeed * _damageRate * Time.deltaTime;
+                float damage = _damageRate * Time.deltaTime;
 
-                neighbour.LoseHealth(modifiedDamage);
+                if (_affectedByWind)
+                {
+                    Vector3 neighbourDirection = (neighbour.GetPosition() - transform.position).normalized;
+                    float dotProduct = Vector3.Dot(_windSystem.WindDirection, neighbourDirection);
+                    float directionDamageModifier = Mathf.Lerp(0, 1, dotProduct);
+                    damage = directionDamageModifier * _windSystem.WindSpeed * damage;
+                }
+
+                neighbour.LoseHealth(damage);
             }
         }
         
@@ -117,13 +123,14 @@ namespace FireSpreading
         public bool IsBurning() { return _burning; }
         public bool CanBurn() { return !_burning && !_burnt; }
         public Vector3 GetPosition() { return transform.position; }
-        public void SetDependencies (NeighboursSearcher newNeighboursSearcher, Transform newRegularPlantsTransform, Transform newBurningPlantsTransform, Transform newBurntPlantsTransform, WindSystem newWindSystem, InteractionSystem newInteractionSystem)
+        public void SetDependenciesAndData (NeighboursSearcher newNeighboursSearcher, Transform newRegularPlantsTransform, Transform newBurningPlantsTransform, Transform newBurntPlantsTransform, WindSystem newWindSystem, InteractionSystem newInteractionSystem, float newPropogationRadiusMultiplier)
         {
             _neighboursSearcher = newNeighboursSearcher;
             _regularPlantsTransform = newRegularPlantsTransform;
             _burningPlantsTransform = newBurningPlantsTransform;
             _burntPlantsTransform = newBurntPlantsTransform;
             _windSystem = newWindSystem;
+            _firePropagationRadiusMultiplier = newPropogationRadiusMultiplier;
 
             _mouseInteractor.SetInteractionSystem(newInteractionSystem);
         }

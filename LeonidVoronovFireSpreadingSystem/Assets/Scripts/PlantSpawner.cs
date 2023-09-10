@@ -15,15 +15,23 @@ namespace FireSpreading
         [SerializeField] private Transform _burntPlantsTransform;
         [SerializeField] private WindSystem _windSystem;
         [SerializeField] private InteractionSystem _interactionSystem;
+        [SerializeField] private UnityEngine.UI.Slider _generationPresetSlider;
+        [SerializeField] private NameRepresenter _nameRepresenter;
 
-        [Header ("Values")]
-        [SerializeField] private int _amountPerGeneration; 
-        [SerializeField] private int _minPlantSize;
-        [SerializeField] private int _maxPlantSize;
+        [Header ("Presets")]
+        [SerializeField] private List<GenerationPreset> _generationPresets = new List<GenerationPreset>();
+
+        private int _currentPresetIndex;
+
+        private void OnEnable()
+        {
+            _generationPresetSlider.onValueChanged.AddListener(delegate { SetGenerationPreset(); });
+            SetGenerationPreset();
+        }
 
         public Plant SpawnPlant(Vector3 spawnPosition)
         {
-            int coreSize = Random.Range(_minPlantSize, _maxPlantSize);
+            int coreSize = Random.Range(_generationPresets[_currentPresetIndex].MinPlantSize, _generationPresets[_currentPresetIndex].MaxPlantSize);
             GameObject newPlant = Instantiate(_plantPrefab, spawnPosition, Quaternion.identity, _regularPlantsTransform);
             newPlant.transform.localScale = new Vector3(coreSize, coreSize * 2, coreSize);
             Transform newPlantTransform = newPlant.transform;
@@ -33,7 +41,7 @@ namespace FireSpreading
                                                       newPlantTransform.position.z); //raise plant to surface
 
             Plant plantComponent = newPlant.GetComponent<Plant>();
-            plantComponent.SetDependencies(_neighboursSearcher, _regularPlantsTransform, _burningPlantsTransform, _burntPlantsTransform, _windSystem, _interactionSystem);
+            plantComponent.SetDependenciesAndData(_neighboursSearcher, _regularPlantsTransform, _burningPlantsTransform, _burntPlantsTransform, _windSystem, _interactionSystem, _generationPresets[_currentPresetIndex].FirePropogationRadiusMultiplier);
             return plantComponent;
         }
 
@@ -62,10 +70,16 @@ namespace FireSpreading
             return hitInfo;
         }
 
+        private void SetGenerationPreset()
+        {
+            _currentPresetIndex = (int)_generationPresetSlider.value;
+            _nameRepresenter.RepresentName(_generationPresets[_currentPresetIndex]);
+        }
+
         public void GeneratePlants()
         {
             Clear();
-            for (int i = 0; i < _amountPerGeneration; i++)
+            for (int i = 0; i < _generationPresets[_currentPresetIndex].AmountPerGeneration; i++)
             {
                 SpawnPlant(FindAvailablePosition());
             }
@@ -75,6 +89,11 @@ namespace FireSpreading
         {
             foreach (ChildCleaner childCleaner in _childCleaners)
                 childCleaner.DestroyChildren();
+        }
+
+        private void OnDisable()
+        {
+            _generationPresetSlider.onValueChanged.RemoveListener(delegate { SetGenerationPreset(); });
         }
     }
 }
