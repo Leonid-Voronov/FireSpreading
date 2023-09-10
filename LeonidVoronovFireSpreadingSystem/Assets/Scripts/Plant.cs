@@ -123,16 +123,15 @@ namespace FireSpreading
         public bool IsBurning() { return _burning; }
         public bool CanBurn() { return !_burning && !_burnt; }
         public Vector3 GetPosition() { return transform.position; }
-        public void SetDependenciesAndData (NeighboursSearcher newNeighboursSearcher, Transform newRegularPlantsTransform, Transform newBurningPlantsTransform, Transform newBurntPlantsTransform, WindSystem newWindSystem, InteractionSystem newInteractionSystem, float newPropogationRadiusMultiplier)
+        public void SetDependenciesAndData (PlantDependencies newDependencies, float newPropogationRadiusMultiplier)
         {
-            _neighboursSearcher = newNeighboursSearcher;
-            _regularPlantsTransform = newRegularPlantsTransform;
-            _burningPlantsTransform = newBurningPlantsTransform;
-            _burntPlantsTransform = newBurntPlantsTransform;
-            _windSystem = newWindSystem;
+            _neighboursSearcher = newDependencies.NeighboursSearcher;
+            _regularPlantsTransform = newDependencies.RegularPlantsTransform;
+            _burningPlantsTransform = newDependencies.BurningPlantsTransform;
+            _burntPlantsTransform = newDependencies.BurntPlantsTransform;
+            _windSystem = newDependencies.WindSystem;
+            _mouseInteractor.SetInteractionSystem(newDependencies.InteractionSystem);
             _firePropagationRadiusMultiplier = newPropogationRadiusMultiplier;
-
-            _mouseInteractor.SetInteractionSystem(newInteractionSystem);
         }
 
         public void AwareNeighboursOnSpawning()

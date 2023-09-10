@@ -1,4 +1,8 @@
-public interface IRepresentative
+namespace FireSpreading
 {
-    public string GetName();
+    public interface IRepresentative
+    {
+        public string GetName();
+    }
 }
+

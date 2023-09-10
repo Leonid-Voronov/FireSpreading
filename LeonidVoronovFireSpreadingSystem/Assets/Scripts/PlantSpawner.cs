@@ -8,15 +8,11 @@ namespace FireSpreading
         [Header ("References")]
         [SerializeField] private TerrainTracker _terrainTracker;
         [SerializeField] private GameObject _plantPrefab;
-        [SerializeField] private NeighboursSearcher _neighboursSearcher;
         [SerializeField] private List<ChildCleaner> _childCleaners;
         [SerializeField] private Transform _regularPlantsTransform;
-        [SerializeField] private Transform _burningPlantsTransform;
-        [SerializeField] private Transform _burntPlantsTransform;
-        [SerializeField] private WindSystem _windSystem;
-        [SerializeField] private InteractionSystem _interactionSystem;
         [SerializeField] private UnityEngine.UI.Slider _generationPresetSlider;
         [SerializeField] private NameRepresenter _nameRepresenter;
+        [SerializeField] private PlantDependencies _plantDependencies;
 
         [Header ("Presets")]
         [SerializeField] private List<GenerationPreset> _generationPresets = new List<GenerationPreset>();
@@ -41,7 +37,7 @@ namespace FireSpreading
                                                       newPlantTransform.position.z); //raise plant to surface
 
             Plant plantComponent = newPlant.GetComponent<Plant>();
-            plantComponent.SetDependenciesAndData(_neighboursSearcher, _regularPlantsTransform, _burningPlantsTransform, _burntPlantsTransform, _windSystem, _interactionSystem, _generationPresets[_currentPresetIndex].FirePropogationRadiusMultiplier);
+            plantComponent.SetDependenciesAndData(_plantDependencies, _generationPresets[_currentPresetIndex].FirePropogationRadiusMultiplier);
             return plantComponent;
         }
 

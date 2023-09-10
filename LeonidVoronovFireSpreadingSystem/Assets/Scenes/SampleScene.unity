@@ -767,6 +767,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1300056372}
     m_Modifications:
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 455486426}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitApplication
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AppCloser, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080775689859817426, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1080775689859817427, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -866,6 +894,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1080775689859817427, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
   m_PrefabInstance: {fileID: 455486423}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &455486425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080775689859817428, guid: 0225d5b4605882340a3ce2ef47eab3c9, type: 3}
+  m_PrefabInstance: {fileID: 455486423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &455486426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455486425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb8becc71bda349bbbae4885bc3280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &483738907 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
@@ -1388,18 +1433,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _terrainTracker: {fileID: 1923527036}
   _plantPrefab: {fileID: 5609697185628954290, guid: e057944c0fcf07943a82fac751f0dc4b, type: 3}
-  _neighboursSearcher: {fileID: 720916871}
   _childCleaners:
   - {fileID: 1919078248}
   - {fileID: 207327409}
   - {fileID: 1470538277}
   _regularPlantsTransform: {fileID: 1919078247}
-  _burningPlantsTransform: {fileID: 207327408}
-  _burntPlantsTransform: {fileID: 1470538276}
-  _windSystem: {fileID: 1068971447}
-  _interactionSystem: {fileID: 100318528}
   _generationPresetSlider: {fileID: 159704320}
   _nameRepresenter: {fileID: 1263351742}
+  _plantDependencies:
+    _neighboursSearcher: {fileID: 720916871}
+    _regularPlantsTransform: {fileID: 1919078247}
+    _burningPlantsTransform: {fileID: 207327408}
+    _burntPlantsTransform: {fileID: 1470538276}
+    _windSystem: {fileID: 1068971447}
+    _interactionSystem: {fileID: 100318528}
   _generationPresets:
   - _presetName: Small amount
     _amountPerGeneration: 100
