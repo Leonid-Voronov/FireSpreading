@@ -14,13 +14,13 @@ namespace FireSpreading
 
         public override void Interact(GameObject pointedObject, InteractionSystem interactionSystem)
         {
-            if (pointedObject.GetComponent<Terrain>())
+            if (pointedObject.GetComponent<TerrainTracker>())
             {
                 Vector3 screenPosition = Input.mousePosition;
                 Ray ray = Camera.main.ScreenPointToRay(screenPosition);
                 Physics.Raycast(ray, out RaycastHit hitInfo);
 
-                if (hitInfo.collider.GetComponent<Terrain>())
+                if (hitInfo.collider.GetComponent<TerrainTracker>())
                 {
                     Plant newPlant = _plantSpawner.SpawnPlant(hitInfo.point);
                     newPlant.AwareNeighboursOnSpawning();

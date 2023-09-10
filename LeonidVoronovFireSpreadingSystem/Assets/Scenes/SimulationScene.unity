@@ -2082,7 +2082,7 @@ MonoBehaviour:
   _randomPlantGetter: {fileID: 1919078249}
   _firePlantsAmount: 3
   _fireRestricted: 0
-  _fireEnergyAmount: 100
+  _fireEnergyAmount: 300
   _regularMaterial: {fileID: 2100000, guid: caa87fb40f3ccff4485bfa127e5d3271, type: 2}
   _burningMaterial: {fileID: 2100000, guid: 14f55d5289b97904485a5b6658d45467, type: 2}
   _burntMaterial: {fileID: 2100000, guid: c23029cc4df059340a9434e6338567fa, type: 2}
