@@ -24,7 +24,7 @@ namespace FireSpreading
                     return;
 
                 RegularFire newFire = CreateRegularFire();
-                plant.GetComponent<IFlammable>().CatchFire(newFire);
+                plant.GetComponent<IFlaming>().CatchFire(newFire);
             }
         }
 

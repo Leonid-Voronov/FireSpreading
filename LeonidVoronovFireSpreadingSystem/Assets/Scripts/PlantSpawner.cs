@@ -36,9 +36,9 @@ namespace FireSpreading
                                                       newPlantTransform.position.y + newPlantTransform.localScale.y / 2, 
                                                       newPlantTransform.position.z); //raise plant to surface
 
-            Plant plantComponent = newPlant.GetComponent<Plant>();
-            plantComponent.SetDependenciesAndData(_plantDependencies, _generationPresets[_currentPresetIndex].FirePropogationRadiusMultiplier);
-            return plantComponent;
+            PlantFlamingComponent plantFlamingComponent = newPlant.GetComponent<PlantFlamingComponent>();
+            plantFlamingComponent.SetDependenciesAndData(_plantDependencies, _generationPresets[_currentPresetIndex].FirePropogationRadiusMultiplier);
+            return plantFlamingComponent.PlantComponent;
         }
 
         private Vector3 FindAvailablePosition()
