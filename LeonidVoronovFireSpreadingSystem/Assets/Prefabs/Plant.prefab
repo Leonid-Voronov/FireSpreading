@@ -114,7 +114,7 @@ MonoBehaviour:
   _defaultMaterial: {fileID: 2100000, guid: caa87fb40f3ccff4485bfa127e5d3271, type: 2}
   _burningMaterial: {fileID: 2100000, guid: 14f55d5289b97904485a5b6658d45467, type: 2}
   _burntMaterial: {fileID: 2100000, guid: c23029cc4df059340a9434e6338567fa, type: 2}
-  _firePropagationRadiusMultiplier: 2
+  _firePropagationRadiusMultiplier: 6
   _healthMax: 50
   _damageRate: 10
   _burnTime: 10
@@ -130,3 +130,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646740c247a94a645a288356a65dc121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactionSystem: {fileID: 0}

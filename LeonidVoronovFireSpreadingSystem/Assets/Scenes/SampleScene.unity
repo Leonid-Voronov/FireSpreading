@@ -1240,7 +1240,6 @@ MonoBehaviour:
   _windRepresenter: {fileID: 1357976393}
   _windDirectionSlider: {fileID: 483738907}
   _windSpeedSlider: {fileID: 563894840}
-  _maxWindSpeed: 5
 --- !u!1 &1300056371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,7 +1696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084031179318681538, guid: 571aa191145a0ea4eae6e318984396ab, type: 3}
       propertyPath: m_MaxValue
@@ -2536,6 +2535,10 @@ PrefabInstance:
       propertyPath: _slider
       value: 
       objectReference: {fileID: 563894840}
+    - target: {fileID: 2929855869045995596, guid: b4f5524af131ff54e99c713a3ebdcd2d, type: 3}
+      propertyPath: m_Text
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2929855869045995596, guid: b4f5524af131ff54e99c713a3ebdcd2d, type: 3}
       propertyPath: m_FontData.m_MinSize
       value: 2

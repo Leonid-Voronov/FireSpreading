@@ -8,22 +8,24 @@ namespace FireSpreading
         [SerializeField] private WindRepresenter _windRepresenter;
         [SerializeField] private Slider _windDirectionSlider;
         [SerializeField] private Slider _windSpeedSlider;
-        [SerializeField] private float _maxWindSpeed;
 
         private Vector3 _windDirection;
         private float _windSpeed;
 
         public Vector3 WindDirection => _windDirection;
+        public float WindSpeed => _windSpeed;
 
         private void OnEnable()
         {
             _windDirectionSlider.onValueChanged.AddListener (delegate { SetWindDirection(); });
             _windSpeedSlider.onValueChanged.AddListener (delegate { SetWindSpeed(); });
+            SetWindDirection();
+            SetWindSpeed();
         }
 
         private void SetWindSpeed()
         {
-            float newValue = _maxWindSpeed * _windSpeedSlider.value;
+            float newValue = _windSpeedSlider.value;
 
             if (newValue < 0)
                 return;

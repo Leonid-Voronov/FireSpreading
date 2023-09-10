@@ -50,7 +50,6 @@ namespace FireSpreading
                 if (_burnTimer <= 0)
                     BurnOut();
             }
-                
         }
 
         private void ResetValues()
@@ -90,10 +89,12 @@ namespace FireSpreading
         {
             foreach (IFlammable neighbour in _neighbours) 
             {
-                Vector3 neighbourDirection = neighbour.GetPosition() - transform.position;
-                float dotProduct = Vector3.Dot(neighbourDirection, _windSystem.WindDirection);
+                Vector3 neighbourDirection = (neighbour.GetPosition() - transform.position).normalized;
+                float dotProduct = Vector3.Dot(_windSystem.WindDirection, neighbourDirection); 
+                float directionDamageModifier = Mathf.Lerp(0, 1, dotProduct);
+                float modifiedDamage = directionDamageModifier * _windSystem.WindSpeed * _damageRate * Time.deltaTime;
 
-                neighbour.LoseHealth(_damageRate * Time.deltaTime);
+                neighbour.LoseHealth(modifiedDamage);
             }
         }
         
